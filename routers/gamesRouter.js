@@ -1,9 +1,10 @@
 import express from "express";
 
-// import functions
+import { getGames, postGames } from "../controllers/gamesControllers.js";
 
 const gamesRouter = express.Router();
 
-// Rotas
+gamesRouter.get("/games", getGames)
+gamesRouter.post("/games", postGames)
 
 export default gamesRouter;
