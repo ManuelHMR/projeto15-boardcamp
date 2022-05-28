@@ -4,20 +4,21 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// import xxxRouter from "./routers/xxxRouter.js"
-// import yyyRouter from "./routers/yyyRouter.js"
-// import zzzRouter from "./routers/zzzRouter.js";
+import categoriesRouter from "./routers/categoriesRouter.js";
+import clientsRouter from "./routers/clientsRouter.js"
+import gamesRouter from "./routers/gamesRouter.js";
+import rentRouter from "./routers/rentRouter.js";
 
 const app = express();
-let port = process.env.PORT || 4000;
-
 app.use(cors());
 app.use(express.json());
 
-// app.use(xxxRouter);
-// app.use(yyyRouter);
-// app.use(zzzRouter);
+app.use(categoriesRouter);
+app.use(clientsRouter);
+app.use(gamesRouter);
+app.use(rentRouter);
 
+let port = process.env.PORT || 4000;
 app.listen(port, () => {
     console.log(`Servidor ligado na porta ${port}`)
 });
