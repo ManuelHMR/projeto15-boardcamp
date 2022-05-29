@@ -1,13 +1,27 @@
 import connection from "../database.js";
 
 export async function getGames(req, res){
-    try {
+    const { name } = req.query;
+    if(!name){
+        try {
+            const result =  await connection.query(`
+                SELECT *
+                FROM games;`
+            )
+            return res.send(result.rows);
+        } catch (err){
+            return res.send(err);
+        }
+    }
+    try{
         const result =  await connection.query(`
-            SELECT *
-            FROM games;`
-        )
-        res.send(result.rows);
-    } catch (err){
+                SELECT *
+                FROM games
+                WHERE name
+                LIKE $1;`, [`${name}%`]
+            )
+            res.send(result.rows);
+    } catch(err){
         res.send(err);
     }
 };
