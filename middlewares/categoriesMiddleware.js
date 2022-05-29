@@ -8,7 +8,7 @@ const categoriesSchema = joi.object({
 export async function categoriesValidation(req, res, next){
     const validation = categoriesSchema.validate(req.body)
     if(validation.error){
-        return res.sendStatus(201);
+        return res.sendStatus(400);
     }
     try{
         const result = await connection.query(`
