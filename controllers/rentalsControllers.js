@@ -88,12 +88,12 @@ export async function returnRentals(req, res){
 };
 
 export async function deleteRentals(req, res){
-    const id = req.params.id;
+    const { id } = req.params;
     try {
-        const rentalDelete = await db.query(`
+        const rentalDelete = await connection.query(`
             DELETE 
             FROM rentals 
-            WHERE rentals.id = $1`,
+            WHERE id=$1`,
             [id]
         );
         return res.sendStatus(200);

@@ -36,15 +36,6 @@ export const checkStock = async (req, res, next) => {
     next();
 }
 
-export const checkFinnished = async (req, res, next) => {
-    const { id } = req.params;
-    const { rows } = await connection.query(`SELECT * FROM rentals WHERE id = $1`, [id]);
-    if (rows[0].returnDate !== null) {
-        return res.sendStatus(400);
-    }
-    next();
-}
-
 export const checkRental = async (req, res, next) => {
     const { id } = req.params;
     const { rows } = await connection.query(`SELECT * FROM rentals WHERE id = $1`, [id]);
